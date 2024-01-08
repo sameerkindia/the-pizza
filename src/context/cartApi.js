@@ -1,15 +1,15 @@
 import { createContext, useReducer } from "react";
-import data1 from "../data";
+import { pizzaData } from "../data";
 
 const CartContext = createContext();
 
-const data = [...data1];
+const data = [...pizzaData];
 
 function totalPrice(state) {
-  console.log(state);
   state.totalPrice = 0;
   const total = state.cart.reduce((acc, item) => (acc += item.total), 0);
-  return total;
+
+  return total.toFixed(2);
 }
 
 const initialState = {
@@ -72,6 +72,10 @@ const reducer = (state, action) => {
         cart: state.cart.filter((item) => item.id !== action.payload),
         totalQuantity: state.totalQuantity--,
         totalPrice: totalPrice(state),
+      };
+    case "RESET":
+      return {
+        ...initialState,
       };
     default:
       return { ...state };

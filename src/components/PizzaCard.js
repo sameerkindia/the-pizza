@@ -50,23 +50,29 @@ function PizzaCard({ item }) {
 
   return (
     <div
-      className=" bg-green-600 flex flex-col justify-between rounded-xl overflow-hidden "
+      className=" bg-[#0F1035] flex flex-col justify-between rounded-xl overflow-hidden p-2 "
       id={item.id}
     >
-      <div className=" h-40"></div>
-      <div className="bg-green-800 py-1.5 px-3 text-white font-samibold">
+      <div className="w-full h-52 bg-white rounded-md">
+        <img
+          className="o object-cover w-full h-full rounded-t-md rounded-tl-md"
+          src={item.img_url}
+          alt="pizza"
+        />
+      </div>
+      <div className=" py-1.5 px-3 text-white font-samibold">
         <p className="text-2xl  text-center font-medium">{item.name}</p>
-        <p>Price: {item.price}</p>
+        <p>Price : {item.price}</p>
 
         <div className="flex justify-evenly text-2xl mt-4 mb-2">
           {!isAdd && <Button onClick={handleIsAdd}>Add To Cart</Button>}
 
           {isAdd && (
-            <>
+            <div className="flex flex-row w-full items-center">
               <Button onClick={handleDec}>-</Button>
-              <span>{count}</span>
+              <span className="block w-full text-center">{count}</span>
               <Button onClick={handleInc}>+</Button>
-            </>
+            </div>
           )}
         </div>
       </div>

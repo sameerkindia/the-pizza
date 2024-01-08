@@ -14,18 +14,24 @@ function CartCard({ item, onInc, onDec }) {
     onDec(item.id);
   }
   return (
-    <li className="m-5 flex flex-col gap-4">
-      <div className=" bg-red-700 h-20 flex justify-between rounded-md">
-        <div className="bg-red-100 w w-36">img</div>
-        <div className="felx-auto">
-          <p className=" text-white text-2xl">{item.name}</p>
-          <p className="text-xl text-gray-600">{item.price}</p>
-          <p>{item.total}</p>
+    <li className="flex flex-col gap-4 p-2 rounded-md bg-[#0F1035]">
+      <div className="sm:h-20 sm:flex  rounded-md ">
+        <div className="bg-red-100 w-36 h-fit rounded-md">
+          <img className="object-cover block" src={item.img_url} alt="pizza" />
         </div>
-        <div className="flex gap-1 items-center p-1">
-          <Button onClick={() => onInc(item.id)}>+</Button>
-          <span>{item.quantity}</span>
-          <Button onClick={() => OnRemove(item.id)}>-</Button>
+        <div className="p-4 flex flex-row justify-between w-full gap-2 h-fit">
+          <div className="flex flex-row justify-between items-center w-full text-white">
+            <p className=" text-2xl">{item.name}</p>
+            <div className="text-xl pr-2">
+              <p>Price : {item.price}</p>
+              <p>Total : {item.total.toFixed(2)}</p>
+            </div>
+          </div>
+          <div className="flex gap-1 items-center p-1 md:w-[20%] text-white ">
+            <Button onClick={() => onInc(item.id)}>+</Button>
+            <span className="block w-full text-center">{item.quantity}</span>
+            <Button onClick={() => OnRemove(item.id)}>-</Button>
+          </div>
         </div>
       </div>
     </li>
